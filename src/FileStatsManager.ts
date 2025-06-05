@@ -13,11 +13,25 @@ export class FileStatsManager {
     private currentFile: string | undefined;
     private currentFileStartTime: number = 0;
     private storagePath: string;
+    private storageDir: string;
+    private updateInterval: NodeJS.Timeout | undefined;
 
     constructor(context: vscode.ExtensionContext) {
-        this.storagePath = path.join(context.globalStorageUri.fsPath, 'file-stats.json');
+        this.storageDir = context.globalStorageUri.fsPath;
+        this.storagePath = path.join(this.storageDir, 'file-stats.json');
+        this.ensureStorageDir();
         this.loadStats();
         this.setupEventListeners();
+    }
+
+    private ensureStorageDir(): void {
+        try {
+            if (!fs.existsSync(this.storageDir)) {
+                fs.mkdirSync(this.storageDir, { recursive: true });
+            }
+        } catch (error) {
+            console.error('Failed to create storage directory:', error);
+        }
     }
 
     private setupEventListeners(): void {
@@ -34,8 +48,32 @@ export class FileStatsManager {
             if (!e.focused && this.currentFile) {
                 this.recordFileAccess(this.currentFile);
                 this.currentFile = undefined;
+                this.clearUpdateInterval();
             }
         });
+
+        // 监听编辑器内容变化事件
+        vscode.workspace.onDidChangeTextDocument(e => {
+            if (this.currentFile === e.document.uri.fsPath) {
+                this.recordFileAccess(this.currentFile);
+            }
+        });
+    }
+
+    private startUpdateInterval(): void {
+        this.clearUpdateInterval();
+        this.updateInterval = setInterval(() => {
+            if (this.currentFile) {
+                this.recordFileAccess(this.currentFile);
+            }
+        }, 1000); // 每秒更新一次
+    }
+
+    private clearUpdateInterval(): void {
+        if (this.updateInterval) {
+            clearInterval(this.updateInterval);
+            this.updateInterval = undefined;
+        }
     }
 
     private loadStats(): void {
@@ -51,6 +89,7 @@ export class FileStatsManager {
 
     private saveStats(): void {
         try {
+            this.ensureStorageDir();
             const data = Object.fromEntries(this.stats);
             fs.writeFileSync(this.storagePath, JSON.stringify(data, null, 2));
         } catch (error) {
@@ -66,6 +105,7 @@ export class FileStatsManager {
         this.currentFile = filePath;
         this.currentFileStartTime = Date.now();
         this.saveStats();
+        this.startUpdateInterval();
     }
 
     public recordFileAccess(filePath: string): void {
@@ -76,6 +116,7 @@ export class FileStatsManager {
                 stats.totalTime += duration;
                 stats.lastAccess = Date.now();
                 this.stats.set(filePath, stats);
+                this.currentFileStartTime = Date.now();
                 this.saveStats();
             }
         }
@@ -97,5 +138,9 @@ export class FileStatsManager {
     public removeAllFiles(): void {
         this.stats.clear();
         this.saveStats();
+    }
+
+    public dispose(): void {
+        this.clearUpdateInterval();
     }
 }

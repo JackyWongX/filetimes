@@ -21,17 +21,8 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "filetimes-view",
-          "title": "FileTimes",
-          "icon": "resources/filetimes.svg"
-        }
-      ]
-    },
     "views": {
-      "filetimes-view": [
+      "explorer": [
         {
           "type": "tree",
           "id": "filetimes-view",

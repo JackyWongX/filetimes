@@ -1,0 +1,96 @@
+{
+  "name": "filetimes",
+  "displayName": "FileTimes",
+  "description": "这是一个用于统计和展示文件访问信息的 VSCode 插件。它可以帮助开发者追踪和分析工作区中文件的访问模式和编辑时间。",
+  "version": "0.1.0",
+  "publisher": "JackyWong",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/filetimes"
+  },
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "filetimes-view",
+          "title": "FileTimes",
+          "icon": "resources/filetimes.svg"
+        }
+      ]
+    },
+    "views": {
+      "filetimes-view": [
+        {
+          "type": "tree",
+          "id": "filetimes-view",
+          "name": "文件访问统计"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "filetimes.sortByTime",
+        "title": "按访问时间排序"
+      },
+      {
+        "command": "filetimes.sortByCount",
+        "title": "按打开次数排序"
+      },
+      {
+        "command": "filetimes.removeFile",
+        "title": "移除文件"
+      },
+      {
+        "command": "filetimes.removeAllFiles",
+        "title": "移除所有文件"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "filetimes.sortByTime",
+          "when": "view == filetimes-view",
+          "group": "navigation"
+        },
+        {
+          "command": "filetimes.sortByCount",
+          "when": "view == filetimes-view",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "filetimes.removeFile",
+          "when": "view == filetimes-view",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^16.11.7",
+    "typescript": "^4.5.5",
+    "vscode-test": "^1.6.1"
+  }
+}

@@ -2,19 +2,38 @@
   "name": "filetimes",
   "displayName": "FileTimes",
   "description": "这是一个用于统计和展示文件访问信息的 VSCode 插件。它可以帮助开发者追踪和分析工作区中文件的访问模式和编辑时间。",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "JackyWong",
-  "private": true,
+  "private": false,
   "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/filetimes"
+    "url": "https://github.com/JackyWong/filetimes"
   },
+  "bugs": {
+    "url": "https://github.com/JackyWong/filetimes/issues"
+  },
+  "homepage": "https://github.com/JackyWong/filetimes#readme",
   "engines": {
     "vscode": "^1.60.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Productivity",
+    "Visualization"
+  ],
+  "keywords": [
+    "file",
+    "statistics",
+    "time",
+    "tracking",
+    "productivity",
+    "usage"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -26,7 +45,7 @@
         {
           "type": "tree",
           "id": "filetimes-view",
-          "name": "文件访问统计"
+          "name": "FileTimes"
         }
       ]
     },

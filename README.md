@@ -1,6 +1,13 @@
 # VSCode FileTimes 插件
 
-这是一个用于统计和展示文件访问信息的 VSCode 插件。它可以帮助开发者追踪和分析工作区中文件的访问模式和编辑时间。
+![Version](https://img.shields.io/visual-studio-marketplace/v/JackyWong.filetimes)
+![Installs](https://img.shields.io/visual-studio-marketplace/i/JackyWong.filetimes)
+![Rating](https://img.shields.io/visual-studio-marketplace/r/JackyWong.filetimes)
+![License](https://img.shields.io/github/license/JackyWong/filetimes)
+
+这是一个用于统计和展示文件访问信息的 VSCode 插件。它可以帮助开发者追踪和分析工作区中文件的访问模式和编辑时间。还可以用来替代文档固定功能。
+
+![插件预览](images/show.png)
 
 ## 功能特性
 
@@ -21,12 +28,9 @@
 
 ### 3. 交互功能
 - 点击列表项自动打开/跳转到对应文档
-- 支持多选操作（按住Ctrl键）
-- 右键菜单功能：
-  - 按访问时间排序（默认）
-  - 按打开次数排序
-  - 移除选中文件
-  - 移除所有文件
+- 按访问时间排序（默认）
+- 按打开次数排序
+- 移除选中文件
 
 ## 安装说明
 
@@ -58,39 +62,35 @@
 }
 ```
 
-## 开发计划
+## 更新日志
 
-### 第一阶段：基础功能实现
-1. 创建插件项目结构
-2. 实现文件访问统计功能
-3. 实现数据存储功能
+### 1.0.0
+- 初始版本发布
+- 实现基本的文件访问统计功能
+- 支持按时间和次数排序
+- 支持文件移除功能
 
-### 第二阶段：UI 实现
-1. 创建资源管理器视图
-2. 实现文件列表显示
-3. 实现排序功能
+## 贡献指南
 
-### 第三阶段：交互功能
-1. 实现文件跳转功能
-2. 实现多选功能
-3. 实现右键菜单功能
+1. Fork 本仓库
+2. 创建您的特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交您的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启一个 Pull Request
 
-### 第四阶段：优化和测试
-1. 性能优化
-2. 单元测试
-3. 集成测试
-4. 文档完善
+## 问题反馈
+
+如果您在使用过程中遇到任何问题，或者有新的功能建议，请通过以下方式反馈：
+
+1. 在 GitHub 仓库中提交 Issue
+2. 在 VSCode 扩展市场中提交评论
+
+## 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
 
 ## 技术栈
 
 - TypeScript
 - VSCode Extension API
 - Node.js
-
-## 贡献指南
-
-欢迎提交 Issue 和 Pull Request 来帮助改进这个插件。
-
-## 许可证
-
-MIT License

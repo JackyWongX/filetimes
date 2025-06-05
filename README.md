@@ -1,13 +1,8 @@
 # VSCode FileTimes 插件
 
-![Version](https://img.shields.io/visual-studio-marketplace/v/JackyWong.filetimes)
-![Installs](https://img.shields.io/visual-studio-marketplace/i/JackyWong.filetimes)
-![Rating](https://img.shields.io/visual-studio-marketplace/r/JackyWong.filetimes)
-![License](https://img.shields.io/github/license/JackyWong/filetimes)
-
 这是一个用于统计和展示文件访问信息的 VSCode 插件。它可以帮助开发者追踪和分析工作区中文件的访问模式和编辑时间。还可以用来替代文档固定功能。
 
-![插件预览](images/show.png)
+![插件预览](https://github.com/JackyWongX/filetimes/raw/main/images/show.png)
 
 ## 功能特性
 

@@ -6,19 +6,19 @@
   "publisher": "JackyWong",
   "private": false,
   "license": "MIT",
-  "icon": "images/icon.png",
+  "icon": "./images/icon.png",
   "galleryBanner": {
     "color": "#C80000",
     "theme": "dark"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JackyWong/filetimes"
+    "url": "https://github.com/JackyWongX/filetimes"
   },
   "bugs": {
-    "url": "https://github.com/JackyWong/filetimes/issues"
+    "url": "https://github.com/JackyWongX/filetimes/issues"
   },
-  "homepage": "https://github.com/JackyWong/filetimes#readme",
+  "homepage": "https://github.com/JackyWongX/filetimes#readme",
   "engines": {
     "vscode": "^1.60.0"
   },

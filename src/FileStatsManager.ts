@@ -17,7 +17,11 @@ export class FileStatsManager {
     private updateInterval: NodeJS.Timeout | undefined;
 
     constructor(context: vscode.ExtensionContext) {
-        this.storageDir = context.globalStorageUri.fsPath;
+        const workspaceFolders = vscode.workspace.workspaceFolders;
+        const projectDir = workspaceFolders && workspaceFolders.length > 0
+            ? workspaceFolders[0].uri.fsPath.replace(/[/\\:]/g, '_')
+            : 'no-project';
+        this.storageDir = path.join(context.globalStorageUri.fsPath, projectDir);
         this.storagePath = path.join(this.storageDir, 'file-stats.json');
         this.ensureStorageDir();
         this.loadStats();

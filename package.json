@@ -50,6 +50,12 @@
         },
         "commands": [
             {
+
+              "command": "filetimes.showSortOptions",
+                "title": "排序方式",
+                "category": "FileTimes"
+            },
+            {
                 "command": "filetimes.sortByTime",
                 "title": "按总时间排序",
                 "category": "FileTimes"
@@ -83,24 +89,10 @@
     "menus": {
       "view/title": [
         {
-          "command": "filetimes.sortByTime",
+          "command": "filetimes.showSortOptions",
           "when": "view == filetimes-view",
-          "group": "navigation"
-        },
-        {
-          "command": "filetimes.sortByCount",
-          "when": "view == filetimes-view",
-          "group": "navigation"
-        },
-        {
-          "command": "filetimes.sortByName",
-          "when": "view == filetimes-view",
-          "group": "navigation"
-        },
-        {
-          "command": "filetimes.sortByLastAccess",
-          "when": "view == filetimes-view",
-          "group": "navigation"
+          "group": "navigation",
+          "title": "$(list-unordered) 排序方式"
         }
       ],
       "view/item/context": [

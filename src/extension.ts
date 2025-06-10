@@ -19,6 +19,18 @@ export function activate(context: vscode.ExtensionContext) {
 
     // 注册命令
     context.subscriptions.push(
+        vscode.commands.registerCommand('filetimes.showSortOptions', () => {
+            vscode.window.showQuickPick([
+                { label: '$(watch) 按总时间排序', description: '按文件总访问时间排序', command: 'filetimes.sortByTime' },
+                { label: '$(list-ordered) 按打开次数排序', description: '按文件打开次数排序', command: 'filetimes.sortByCount' },
+                { label: '$(file-text) 按文件名排序', description: '按文件名排序', command: 'filetimes.sortByName' },
+                { label: '$(calendar) 按最后访问时间排序', description: '按最后访问时间排序', command: 'filetimes.sortByLastAccess' }
+            ]).then(selection => {
+                if (selection) {
+                    vscode.commands.executeCommand(selection.command);
+                }
+            });
+        }),
         vscode.commands.registerCommand('filetimes.sortByTime', () => {
             viewProvider.setSortBy('time');
             context.globalState.update('filetimes.sortBy', 'time');

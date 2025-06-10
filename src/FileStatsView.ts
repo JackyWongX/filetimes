@@ -46,7 +46,7 @@ export class FileStatsViewProvider implements vscode.TreeDataProvider<FileStatsI
     private _onDidChangeTreeData: vscode.EventEmitter<FileStatsItem | undefined | null | void> = new vscode.EventEmitter<FileStatsItem | undefined | null | void>();
     readonly onDidChangeTreeData: vscode.Event<FileStatsItem | undefined | null | void> = this._onDidChangeTreeData.event;
 
-    private sortBy: 'time' | 'count' = 'time';
+    private sortBy: 'time' | 'count' | 'name' | 'lastAccess' = 'time';
     private currentFile: string | undefined;
 
     constructor(private statsManager: FileStatsManager) {
@@ -74,7 +74,7 @@ export class FileStatsViewProvider implements vscode.TreeDataProvider<FileStatsI
         this.refresh();
     }
 
-    public setSortBy(sortBy: 'time' | 'count'): void {
+    public setSortBy(sortBy: 'time' | 'count' | 'name' | 'lastAccess'): void {
         this.sortBy = sortBy;
         this.refresh();
     }
@@ -104,12 +104,21 @@ export class FileStatsViewProvider implements vscode.TreeDataProvider<FileStatsI
 
         // 排序
         items.sort((a, b) => {
-            if (this.sortBy === 'time') {
-                // 按总访问时间降序排列
-                return b.stats.totalTime - a.stats.totalTime;
-            } else {
-                // 按打开次数降序排列
-                return b.stats.openCount - a.stats.openCount;
+            switch (this.sortBy) {
+                case 'time':
+                    // 按总访问时间降序排列
+                    return b.stats.totalTime - a.stats.totalTime;
+                case 'count':
+                    // 按打开次数降序排列
+                    return b.stats.openCount - a.stats.openCount;
+                case 'name':
+                    // 按文件名升序排列
+                    return a.fileLabel.localeCompare(b.fileLabel);
+                case 'lastAccess':
+                    // 按最后访问时间降序排列
+                    return b.stats.lastAccess - a.stats.lastAccess;
+                default:
+                    return 0;
             }
         });
 

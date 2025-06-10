@@ -2,7 +2,7 @@
   "name": "filetimes",
   "displayName": "FileTimes",
   "description": "这是一个用于统计和展示文件访问信息的 VSCode 插件。它可以帮助开发者追踪和分析工作区中文件的访问模式和编辑时间。",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "JackyWong",
   "private": false,
   "license": "MIT",
@@ -39,33 +39,47 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "views": {
-      "explorer": [
-        {
-          "type": "tree",
-          "id": "filetimes-view",
-          "name": "FileTimes"
-        }
-      ]
-    },
-    "commands": [
-      {
-        "command": "filetimes.sortByTime",
-        "title": "按访问时间排序"
-      },
-      {
-        "command": "filetimes.sortByCount",
-        "title": "按打开次数排序"
-      },
-      {
-        "command": "filetimes.removeFile",
-        "title": "移除文件"
-      },
-      {
-        "command": "filetimes.removeAllFiles",
-        "title": "移除所有文件"
-      }
-    ],
+        "views": {
+            "explorer": [
+                {
+                    "type": "tree",
+                    "id": "filetimes-view",
+                    "name": "FileTimes"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "filetimes.sortByTime",
+                "title": "按总时间排序",
+                "category": "FileTimes"
+            },
+            {
+                "command": "filetimes.sortByCount",
+                "title": "按打开次数排序",
+                "category": "FileTimes"
+            },
+            {
+                "command": "filetimes.sortByName",
+                "title": "按文件名排序",
+                "category": "FileTimes"
+            },
+            {
+                "command": "filetimes.sortByLastAccess",
+                "title": "按最后访问时间排序",
+                "category": "FileTimes"
+            },
+            {
+                "command": "filetimes.removeFile",
+                "title": "移除文件",
+                "category": "FileTimes"
+            },
+            {
+                "command": "filetimes.removeAllFiles",
+                "title": "移除所有文件",
+                "category": "FileTimes"
+            }
+        ],
     "menus": {
       "view/title": [
         {
@@ -75,6 +89,16 @@
         },
         {
           "command": "filetimes.sortByCount",
+          "when": "view == filetimes-view",
+          "group": "navigation"
+        },
+        {
+          "command": "filetimes.sortByName",
+          "when": "view == filetimes-view",
+          "group": "navigation"
+        },
+        {
+          "command": "filetimes.sortByLastAccess",
           "when": "view == filetimes-view",
           "group": "navigation"
         }

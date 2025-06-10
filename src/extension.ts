@@ -13,13 +13,27 @@ export function activate(context: vscode.ExtensionContext) {
         showCollapseAll: false
     });
 
+    // 从全局状态恢复排序方式
+    const savedSortBy = context.globalState.get<string>('filetimes.sortBy') || 'time';
+    viewProvider.setSortBy(savedSortBy as any);
+
     // 注册命令
     context.subscriptions.push(
         vscode.commands.registerCommand('filetimes.sortByTime', () => {
             viewProvider.setSortBy('time');
+            context.globalState.update('filetimes.sortBy', 'time');
         }),
         vscode.commands.registerCommand('filetimes.sortByCount', () => {
             viewProvider.setSortBy('count');
+            context.globalState.update('filetimes.sortBy', 'count');
+        }),
+        vscode.commands.registerCommand('filetimes.sortByName', () => {
+            viewProvider.setSortBy('name');
+            context.globalState.update('filetimes.sortBy', 'name');
+        }),
+        vscode.commands.registerCommand('filetimes.sortByLastAccess', () => {
+            viewProvider.setSortBy('lastAccess');
+            context.globalState.update('filetimes.sortBy', 'lastAccess');
         }),
         vscode.commands.registerCommand('filetimes.removeFile', (item: FileStatsItem) => {
             statsManager.removeFile(item.filePath);

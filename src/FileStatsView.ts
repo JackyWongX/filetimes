@@ -17,10 +17,9 @@ export class FileStatsItem extends vscode.TreeItem {
         // 格式化最后访问时间
         const lastAccess = new Date(stats.lastAccess);
         const formattedTime = lastAccess.toLocaleString();
-
-        this.tooltip = `${filePath}\n打开次数: ${stats.openCount}\n总访问时间: ${Math.round(stats.totalTime)}秒\n最后访问: ${formattedTime}`;
+        this.tooltip = `${filePath}\nOpen Count: ${stats.openCount}\nTotal Time: ${Math.round(stats.totalTime)}s\nLast Access: ${formattedTime}`;
         // 修改description，使其更紧凑
-        this.description = ` ${stats.openCount}次 | ${Math.round(stats.totalTime)}秒 | ${formattedTime}`;
+        this.description = ` ${stats.openCount}x | ${Math.round(stats.totalTime)}s | ${formattedTime}`;
 
         // 如果是当前文件，设置高亮样式
         if (isCurrentFile) {

@@ -51,43 +51,43 @@
         "commands": [
             {
                 "command": "filetimes.sortByTime",
-                "title": "按总时间排序",
+                "title": "Sort by Total Time",
                 "category": "FileTimes",
                 "icon": "$(watch)"
             },
             {
                 "command": "filetimes.sortByCount",
-                "title": "按打开次数排序",
+                "title": "Sort by Open Count",
                 "category": "FileTimes",
                 "icon": "$(list-ordered)"
             },
             {
                 "command": "filetimes.sortByName",
-                "title": "按文件名排序",
+                "title": "Sort by File Name",
                 "category": "FileTimes",
                 "icon": "$(file-text)"
             },
             {
                 "command": "filetimes.sortByLastAccess",
-                "title": "按最后访问时间排序",
+                "title": "Sort by Last Access",
                 "category": "FileTimes",
                 "icon": "$(calendar)"
             },
             {
                 "command": "filetimes.removeFile",
-                "title": "移除文件",
+                "title": "Remove File",
                 "category": "FileTimes"
             },
             {
                 "command": "filetimes.removeAllFiles",
-                "title": "移除所有文件",
+                "title": "Remove All Files",
                 "category": "FileTimes"
             }
         ],
     "submenus": [
         {
             "id": "filetimes.sortSubmenu",
-            "label": "排序方式",
+            "label": "Sort Options",
             "icon": "$(menu)"
         }
     ],

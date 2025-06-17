@@ -1,91 +1,207 @@
-# VSCode FileTimes 插件
+# FileTimes - VSCode File Activity Tracker
 
-这是一个用于统计和展示文件访问信息的 VSCode 插件。它可以帮助开发者追踪和分析工作区中文件的访问模式和编辑时间。还可以用来替代文档固定功能。
+[![Version](https://img.shields.io/vscode-marketplace/v/JackyWong.filetimes.svg)](https://marketplace.visualstudio.com/items?itemName=JackyWong.filetimes)
+[![Installs](https://img.shields.io/vscode-marketplace/i/JackyWong.filetimes.svg)](https://marketplace.visualstudio.com/items?itemName=JackyWong.filetimes)
+[![Rating](https://img.shields.io/vscode-marketplace/r/JackyWong.filetimes.svg)](https://marketplace.visualstudio.com/items?itemName=JackyWong.filetimes)
 
-![插件预览](https://github.com/JackyWongX/filetimes/raw/main/images/show.png)
+A powerful VSCode extension that tracks and displays file access information to help developers analyze their coding patterns and boost productivity. Perfect for understanding which files you work with most and replacing the traditional pinning functionality.
 
-## 功能特性
+📖 **[中文文档 / Chinese Documentation](README_CN.md)**
 
-### 1. 文件访问统计
-- 统计每个文件的打开次数
-- 记录文件的查看和编辑时间
-- 仅统计当前焦点文档的时间
-- 支持临时打开和未完全打开的文件过滤
+![Plugin Preview](https://github.com/JackyWongX/filetimes/raw/main/images/show.png)
 
-### 2. 文件列表展示
-- 在资源管理器中集成显示窗口
-- 显示文件详细信息：
-  - 文件名
-  - 完整路径
-  - 访问时间
-  - 打开次数
-- 高亮显示当前焦点文档
+## ✨ Features
 
-### 3. 交互功能
-- 点击列表项自动打开/跳转到对应文档
-- 按访问时间排序（默认）
-- 按打开次数排序
-- 移除选中文件
+### 📊 File Activity Tracking
+- **Open Count Tracking**: Monitors how many times each file has been opened
+- **Time Tracking**: Records viewing and editing time for each file
+- **Focus-Based Timing**: Only tracks time when the file is actively focused
+- **Smart Filtering**: Excludes temporary and partially opened files from statistics
 
-## 安装说明
+### 📋 File List Display
+- **Explorer Integration**: Seamlessly integrates with VSCode's Explorer panel
+- **Comprehensive Information**: Displays detailed file statistics including:
+  - File name and full path
+  - Total access time
+  - Open count
+  - Last access timestamp
+- **Active File Highlighting**: Highlights the currently focused file in the list
 
-1. 在 VSCode 扩展市场中搜索 "FileTimes"
-2. 点击安装按钮
-3. 重启 VSCode
+### 🔧 Interactive Features
+- **Quick File Access**: Click any item to instantly open/jump to the corresponding file
+- **Flexible Sorting Options**: Multiple sorting methods available via dropdown menu:
+  - 📊 Sort by Total Time (default)
+  - 🔢 Sort by Open Count
+  - 📝 Sort by File Name
+  - 📅 Sort by Last Access Time
+- **File Management**:
+  - Remove individual files from tracking
+  - Clear all tracked files at once
+  - Context menu for quick actions
 
-## 使用方法
+### 🎨 User Interface
+- **Modern Design**: Clean and intuitive interface that matches VSCode's theme
+- **Responsive Layout**: Adapts to different panel sizes
+- **Icon Support**: Uses VSCode's built-in icons for consistent visual experience
+- **Dropdown Menu**: Convenient sorting options accessible via hamburger menu button
 
-1. 安装插件后，在 VSCode 的资源管理器面板中会出现新的文件统计视图
-2. 默认情况下，文件列表按访问时间排序
-3. 使用右键菜单可以切换排序方式
-4. 点击列表中的文件可以直接打开
-5. 按住 Ctrl 键可以选择多个文件进行批量操作
+## 📦 Installation
 
-## 数据存储
+### From VSCode Marketplace
+1. Open VSCode
+2. Go to Extensions (`Ctrl+Shift+X` or `Cmd+Shift+X`)
+3. Search for "FileTimes"
+4. Click "Install"
+5. Restart VSCode (if required)
 
-- 统计数据保存在工作区的 `.vscode/file-stats.json` 文件中
-- 数据格式：
+### Manual Installation
+1. Download the `.vsix` file from the [releases page](https://github.com/JackyWongX/filetimes/releases)
+2. Open VSCode
+3. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+4. Type "Extensions: Install from VSIX"
+5. Select the downloaded `.vsix` file
+
+## 🚀 Usage
+
+### Getting Started
+1. After installation, the FileTimes panel will appear in the Explorer sidebar
+2. Open any file to start tracking - the extension automatically begins monitoring your activity
+3. View your file statistics in the FileTimes panel
+
+### Sorting Options
+- Click the hamburger menu (☰) button in the FileTimes panel header
+- Choose from multiple sorting options:
+  - **Total Time**: Files with the most accumulated active time
+  - **Open Count**: Most frequently opened files
+  - **File Name**: Alphabetical sorting
+  - **Last Access**: Recently accessed files first
+
+### File Management
+- **Open Files**: Click any file in the list to open it immediately
+- **Remove Files**: Right-click on a file to remove it from tracking
+- **Clear All**: Use the context menu to clear all tracked files
+
+## 💾 Data Storage
+
+### Storage Location
+File statistics are automatically saved in your VSCode global storage directory:
+- **Windows**: `%APPDATA%\Code\User\globalStorage\JackyWong.filetimes\`
+- **macOS**: `~/Library/Application Support/Code/User/globalStorage/JackyWong.filetimes/`
+- **Linux**: `~/.config/Code/User/globalStorage/JackyWong.filetimes/`
+
+### Data Format
 ```json
 {
   "files": {
-    "文件路径": {
-      "openCount": 打开次数,
-      "totalTime": 总访问时间(秒),
-      "lastAccess": 最后访问时间戳
+    "/path/to/file.js": {
+      "openCount": 15,
+      "totalTime": 3600,
+      "lastAccess": 1638360000000
     }
   }
 }
 ```
 
-## 更新日志
+## ⚙️ Configuration
 
-### 1.0.0
-- 初始版本发布
-- 实现基本的文件访问统计功能
-- 支持按时间和次数排序
-- 支持文件移除功能
+The extension works out of the box with sensible defaults. Currently, all configuration is handled automatically:
 
-## 贡献指南
+- **Auto-Start**: Begins tracking immediately when VSCode starts
+- **Smart Detection**: Only tracks files that are actively being worked on
+- **Background Operation**: Runs efficiently without impacting VSCode performance
 
-1. Fork 本仓库
-2. 创建您的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交您的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启一个 Pull Request
+## 🔧 Commands
 
-## 问题反馈
+| Command | Description | Keyboard Shortcut |
+|---------|-------------|-------------------|
+| `FileTimes: Sort by Total Time` | Sort files by accumulated active time | - |
+| `FileTimes: Sort by Open Count` | Sort files by how often they're opened | - |
+| `FileTimes: Sort by File Name` | Sort files alphabetically | - |
+| `FileTimes: Sort by Last Access` | Sort files by most recent access | - |
+| `FileTimes: Remove File` | Remove selected file from tracking | - |
+| `FileTimes: Remove All Files` | Clear all tracked files | - |
 
-如果您在使用过程中遇到任何问题，或者有新的功能建议，请通过以下方式反馈：
+## 🐛 Troubleshooting
 
-1. 在 GitHub 仓库中提交 Issue
-2. 在 VSCode 扩展市场中提交评论
+### Common Issues
 
-## 许可证
+**Files not being tracked?**
+- Ensure the files are saved (temporary files are filtered out)
+- Check that you're actively editing/viewing the files (not just opening them briefly)
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+**Statistics seem incorrect?**
+- The extension only tracks time when files are in focus
+- Time tracking pauses when you switch to other applications
 
-## 技术栈
+**Panel not showing?**
+- Look for "FileTimes" in the Explorer sidebar
+- Try restarting VSCode if the panel doesn't appear after installation
 
-- TypeScript
-- VSCode Extension API
-- Node.js
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** your feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
+
+### Development Setup
+```bash
+# Clone the repository
+git clone https://github.com/JackyWongX/filetimes.git
+
+# Install dependencies
+npm install
+
+# Compile TypeScript
+npm run compile
+
+# Watch for changes
+npm run watch
+```
+
+## 📝 Changelog
+
+### Version 1.0.3
+- ✨ Added dropdown menu for sorting options
+- 🎨 Improved UI with hamburger menu button
+- 🔧 Enhanced submenu functionality
+- 🐛 Fixed menu positioning issues
+
+### Version 1.0.2
+- 🔧 Improved file tracking accuracy
+- 📊 Enhanced sorting capabilities
+- 🎨 UI improvements and icon additions
+
+### Version 1.0.1
+- 🐛 Bug fixes and performance improvements
+- 📚 Documentation updates
+
+### Version 1.0.0
+- 🎉 Initial release
+- 📊 Basic file activity tracking
+- 🔄 Sorting by time and count
+- 🗑️ File removal functionality
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/JackyWongX/filetimes)
+- [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=JackyWong.filetimes)
+- [Issue Tracker](https://github.com/JackyWongX/filetimes/issues)
+- [中文文档](README_CN.md)
+
+## 🙏 Acknowledgments
+
+- Built with [VSCode Extension API](https://code.visualstudio.com/api)
+- Icons provided by [VSCode Codicons](https://microsoft.github.io/vscode-codicons/)
+- Inspired by the need for better file management in development workflows
+
+---
+
+**Made with ❤️ for the VSCode community**
